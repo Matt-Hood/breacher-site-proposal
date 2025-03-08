@@ -1,0 +1,2092 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beacher Framing | Website Proposal</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+    
+    :root {
+      --primary: #0f2c3d;
+      --primary-light: #1e3a4a;
+      --secondary: #c8a951;
+      --secondary-light: #e4c876;
+      --accent: #b86f52;
+      --light: #f8f9fb;
+      --dark: #1a1a1a;
+      --text: #333333;
+      --text-light: #666666;
+      --white: #ffffff;
+      --border: rgba(210, 210, 210, 0.5);
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+      --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      --shadow-hover: 0 10px 40px rgba(0, 0, 0, 0.15);
+      --transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      line-height: 1.7;
+      background-color: var(--white);
+      overflow-x: hidden;
+    }
+    
+    h1, h2, h3, h4, h5 {
+      font-family: 'Cormorant', serif;
+      color: var(--dark);
+      line-height: 1.3;
+      font-weight: 600;
+    }
+    
+    p {
+      margin-bottom: 1.5rem;
+      font-weight: 400;
+      color: var(--text-light);
+    }
+    
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: var(--transition);
+    }
+    
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      position: relative;
+    }
+    
+    .container-sm {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      position: relative;
+    }
+    
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.8rem 1.8rem;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: var(--transition);
+      font-size: 0.95rem;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+    
+    .btn::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 100%;
+      top: 0;
+      left: 0;
+      transition: width 0.3s ease;
+      z-index: -1;
+    }
+    
+    .btn-primary {
+      background-color: var(--primary);
+      color: var(--white);
+      border: 1px solid var(--primary);
+    }
+    
+    .btn-primary::after {
+      background-color: var(--primary-light);
+    }
+    
+    .btn-primary:hover::after {
+      width: 100%;
+    }
+    
+    .btn-secondary {
+      background-color: var(--secondary);
+      color: var(--dark);
+      border: 1px solid var(--secondary);
+    }
+    
+    .btn-secondary::after {
+      background-color: var(--secondary-light);
+    }
+    
+    .btn-secondary:hover::after {
+      width: 100%;
+    }
+    
+    .btn-outline {
+      background-color: transparent;
+      color: var(--white);
+      border: 1px solid var(--white);
+    }
+    
+    .btn-outline::after {
+      background-color: var(--white);
+    }
+    
+    .btn-outline:hover {
+      color: var(--primary);
+    }
+    
+    .btn-outline:hover::after {
+      width: 100%;
+    }
+    
+    .btn-link {
+      color: var(--primary);
+      padding: 0;
+      position: relative;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+    }
+    
+    .btn-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background-color: var(--primary);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.3s ease;
+    }
+    
+    .btn-link:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+    
+    .btn-link i {
+      transition: transform 0.3s ease;
+      margin-left: 6px;
+      font-size: 12px;
+    }
+    
+    .btn-link:hover i {
+      transform: translateX(4px);
+    }
+    
+    .icon {
+      margin-left: 0.5rem;
+      transition: var(--transition);
+    }
+    
+    .btn:hover .icon {
+      transform: translateX(5px);
+    }
+    
+    .text-center {
+      text-align: center;
+    }
+    
+    .text-gradient {
+      background: linear-gradient(to right, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    
+    .text-accent {
+      color: var(--accent);
+    }
+    
+    .text-secondary {
+      color: var(--secondary);
+    }
+    
+    .highlight {
+      position: relative;
+      display: inline-block;
+      z-index: 1;
+    }
+    
+    .highlight::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 30%;
+      background-color: rgba(200, 169, 81, 0.2);
+      z-index: -1;
+    }
+    
+    /* Header & Navigation */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 1rem 0;
+      transition: var(--transition);
+      background-color: rgba(15, 44, 61, 0.95);
+      backdrop-filter: blur(8px);
+    }
+    
+    .header.scrolled {
+      padding: 0.6rem 0;
+      background-color: rgba(15, 44, 61, 0.98);
+      box-shadow: var(--shadow);
+    }
+    
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      font-family: 'Cormorant', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--white);
+      transition: var(--transition);
+    }
+    
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+    
+    .nav-link {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--white);
+      transition: var(--transition);
+      letter-spacing: 0.5px;
+      opacity: 0.9;
+    }
+    
+    .nav-link:hover {
+      opacity: 1;
+      color: var(--secondary);
+    }
+    
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      min-height: 700px;
+      background: linear-gradient(rgba(15, 44, 61, 0.85), rgba(15, 44, 61, 0.9)), url('/api/placeholder/1400/800') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      background: var(--secondary);
+      border-radius: 50%;
+      top: -150px;
+      right: -150px;
+      opacity: 0.1;
+    }
+    
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: var(--accent);
+      border-radius: 50%;
+      bottom: -250px;
+      left: -250px;
+      opacity: 0.1;
+    }
+    
+    .hero-content {
+      max-width: 750px;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .hero-tag {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background-color: rgba(200, 169, 81, 0.15);
+      color: var(--secondary);
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    
+    .hero-tag i {
+      margin-right: 6px;
+    }
+    
+    .hero-subtitle {
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: var(--secondary);
+      letter-spacing: 1px;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    
+    .hero-title {
+      font-size: 4rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+    }
+    
+    .hero-text {
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 2.5rem;
+      max-width: 600px;
+    }
+    
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+    }
+    
+    .hero-media {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 40%;
+      height: 100%;
+      opacity: 0.3;
+    }
+    
+    /* Section Styles */
+    .section {
+      padding: 7rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .section-sm {
+      padding: 5rem 0;
+    }
+    
+    .section-light {
+      background-color: var(--white);
+    }
+    
+    .section-dark {
+      background-color: var(--light);
+    }
+    
+    .section-primary {
+      background-color: var(--primary);
+      color: var(--white);
+    }
+    
+    .section-accent {
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: var(--white);
+    }
+    
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    
+    .section-pretitle {
+      color: var(--secondary);
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    
+    .section-title {
+      font-size: 3rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      width: 80px;
+      height: 3px;
+      background-color: var(--secondary);
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    
+    .section-subtitle {
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin: 0 auto;
+      margin-top: 1.5rem;
+      color: var(--text-light);
+    }
+    
+    .section-accent .section-title,
+    .section-accent .section-subtitle,
+    .section-accent p {
+      color: var(--white);
+    }
+    
+    .section-accent .section-title::after {
+      background-color: var(--white);
+    }
+    
+    /* Value Proposition */
+    .value-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    
+    .value-card {
+      background-color: var(--white);
+      border-radius: 8px;
+      padding: 2.5rem;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .value-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 100%;
+      background-color: var(--primary);
+      transition: var(--transition);
+      z-index: -1;
+    }
+    
+    .value-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow);
+    }
+    
+    .value-card:hover::before {
+      width: 100%;
+      opacity: 0.03;
+    }
+    
+    .value-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 70px;
+      height: 70px;
+      background-color: rgba(15, 44, 61, 0.05);
+      border-radius: 50%;
+      margin-bottom: 1.5rem;
+      color: var(--primary);
+      font-size: 1.5rem;
+      transition: var(--transition);
+    }
+    
+    .value-card:hover .value-icon {
+      background-color: var(--primary);
+      color: var(--white);
+    }
+    
+    .value-title {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      position: relative;
+    }
+    
+    .value-text {
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+    
+    /* Features Section */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2.5rem;
+    }
+    
+    .feature-card {
+      background-color: var(--white);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      position: relative;
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-hover);
+    }
+    
+    .feature-image {
+      height: 200px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .feature-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    
+    .feature-card:hover .feature-image img {
+      transform: scale(1.05);
+    }
+    
+    .feature-badge {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background-color: var(--accent);
+      color: var(--white);
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 0.3rem 0.8rem;
+      border-radius: 50px;
+      z-index: 1;
+    }
+    
+    .feature-content {
+      padding: 2rem;
+    }
+    
+    .feature-title {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+    
+    .feature-desc {
+      margin-bottom: 1.5rem;
+      color: var(--text-light);
+    }
+    
+    .feature-list {
+      margin-bottom: 1.5rem;
+      list-style: none;
+    }
+    
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 0.8rem;
+      font-size: 0.95rem;
+    }
+    
+    .feature-item i {
+      color: var(--secondary);
+      margin-right: 0.8rem;
+      margin-top: 0.3rem;
+      flex-shrink: 0;
+    }
+    
+    /* Process Section */
+    .process-wrapper {
+      display: flex;
+      flex-direction: column;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .process-step {
+      display: flex;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+    
+    .process-step:last-child {
+      margin-bottom: 0;
+    }
+    
+    .process-step::after {
+      content: '';
+      position: absolute;
+      width: 2px;
+      background-color: rgba(15, 44, 61, 0.1);
+      top: 80px;
+      bottom: -40px;
+      left: 40px;
+    }
+    
+    .process-step:last-child::after {
+      display: none;
+    }
+    
+    .process-number {
+      width: 80px;
+      height: 80px;
+      flex-shrink: 0;
+      background-color: var(--primary);
+      color: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant', serif;
+      font-size: 2rem;
+      font-weight: 600;
+      margin-right: 2rem;
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 0 0 8px rgba(15, 44, 61, 0.05);
+    }
+    
+    .process-content {
+      flex-grow: 1;
+      padding-top: 1rem;
+    }
+    
+    .process-title {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+    
+    .process-text {
+      margin-bottom: 0;
+    }
+    
+    /* Pricing Section */
+    .pricing-tag {
+      display: inline-block;
+      padding: 0.4rem 1rem;
+      background-color: var(--secondary);
+      color: var(--dark);
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    
+    .pricing-card {
+      background-color: var(--white);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .pricing-card.featured {
+      transform: scale(1.05);
+      z-index: 2;
+      box-shadow: var(--shadow-hover);
+      border: 2px solid var(--secondary);
+    }
+    
+    .pricing-card:not(.featured):hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-hover);
+    }
+    
+    .pricing-card-badge {
+      position: absolute;
+      top: 0;
+      right: 30px;
+      background-color: var(--secondary);
+      color: var(--dark);
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.5rem 1.5rem;
+      border-radius: 0 0 12px 12px;
+      z-index: 1;
+    }
+    
+    .pricing-header {
+      padding: 2.5rem 2rem;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+      background-color: rgba(15, 44, 61, 0.02);
+    }
+    
+    .pricing-card.featured .pricing-header {
+      background-color: rgba(200, 169, 81, 0.05);
+    }
+    
+    .pricing-title {
+      font-size: 1.6rem;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+    
+    .pricing-subtitle {
+      font-size: 0.95rem;
+      color: var(--text-light);
+      margin-bottom: 1.5rem;
+    }
+    
+    .pricing-price {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+    
+    .pricing-amount {
+      font-size: 4rem;
+      font-weight: 700;
+      color: var(--primary);
+      line-height: 1;
+      position: relative;
+    }
+    
+    .pricing-card.featured .pricing-amount {
+      color: var(--secondary);
+    }
+    
+    .pricing-currency {
+      font-size: 1.5rem;
+      position: absolute;
+      top: 5px;
+      left: -15px;
+    }
+    
+    .pricing-period {
+      font-size: 0.9rem;
+      color: var(--text-light);
+      margin-left: 5px;
+      align-self: flex-end;
+      margin-bottom: 10px;
+    }
+    
+    .pricing-content {
+      padding: 2rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .pricing-features {
+      list-style: none;
+      margin-bottom: 2rem;
+      flex-grow: 1;
+    }
+    
+    .pricing-feature {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+    }
+    
+    .pricing-feature i {
+      color: var(--secondary);
+      margin-right: 0.8rem;
+      margin-top: 0.3rem;
+      flex-shrink: 0;
+    }
+    
+    .pricing-feature.disabled {
+      color: #aaa;
+      text-decoration: line-through;
+    }
+    
+    .pricing-feature.disabled i {
+      color: #ddd;
+    }
+    
+    .pricing-action {
+      text-align: center;
+    }
+    
+    .pricing-disclaimer {
+      font-size: 0.85rem;
+      text-align: center;
+      color: var(--text-light);
+      margin-top: 2rem;
+    }
+    
+    /* Add-ons Section */
+    .add-ons-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+    
+    .add-on-card {
+      background-color: var(--white);
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      border: 1px solid var(--border);
+    }
+    
+    .add-on-card:hover {
+      box-shadow: var(--shadow);
+      border-color: var(--secondary);
+    }
+    
+    .add-on-icon {
+      font-size: 1.5rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+    
+    .add-on-title {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .add-on-price {
+      color: var(--secondary);
+      font-weight: 600;
+    }
+    
+    .add-on-desc {
+      font-size: 0.9rem;
+      margin-bottom: 0;
+    }
+    
+    /* Limited Offer */
+    .limited-offer {
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      padding: 3rem;
+      border-radius: 12px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      margin-top: 3rem;
+    }
+    
+    .limited-offer::before {
+      content: '';
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.03);
+      top: -150px;
+      right: -150px;
+    }
+    
+    .limited-offer::after {
+      content: '';
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.05);
+      bottom: -100px;
+      left: -100px;
+    }
+    
+    .offer-content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .offer-text {
+      flex-grow: 1;
+    }
+    
+    .offer-badge {
+      display: inline-block;
+      padding: 0.4rem 1rem;
+      background-color: var(--secondary);
+      color: var(--dark);
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    
+    .offer-title {
+      font-size: 2rem;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+    
+    .offer-desc {
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 0;
+      max-width: 600px;
+    }
+    
+    .offer-action {
+      flex-shrink: 0;
+      margin-left: 2rem;
+    }
+    
+    .countdown {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .countdown-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 70px;
+      height: 70px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+    }
+    
+    .countdown-number {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+    
+    .countdown-label {
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.7);
+      text-transform: uppercase;
+    }
+    
+    /* Testimonials */
+    .testimonials-wrapper {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .testimonial {
+      background-color: var(--white);
+      padding: 2.5rem;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      margin-bottom: 2rem;
+      position: relative;
+    }
+    
+    .testimonial::before {
+      content: '\201C';
+      font-family: Georgia, serif;
+      position: absolute;
+      top: 0;
+      left: 30px;
+      font-size: 5rem;
+      line-height: 1;
+      color: var(--secondary);
+      opacity: 0.2;
+    }
+    
+    .testimonial-text {
+      font-size: 1.1rem;
+      font-style: italic;
+      margin-bottom: 1.5rem;
+    }
+    
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+    }
+    
+    .testimonial-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      margin-right: 1rem;
+      overflow: hidden;
+    }
+    
+    .testimonial-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .testimonial-info h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.3rem;
+    }
+    
+    .testimonial-info p {
+      font-size: 0.9rem;
+      color: var(--text-light);
+      margin-bottom: 0;
+    }
+    
+    /* FAQ Section */
+    .faq-wrapper {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .faq-item {
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1.5rem;
+    }
+    
+    .faq-question {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+      position: relative;
+      cursor: pointer;
+      padding-right: 1.5rem;
+    }
+    
+    .faq-question::after {
+      content: '\f107';
+      font-family: 'Font Awesome 5 Free';
+      font-weight: 900;
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      transition: transform 0.3s ease;
+    }
+    
+    .faq-item.active .faq-question::after {
+      transform: translateY(-50%) rotate(180deg);
+    }
+    
+    .faq-answer {
+      display: none;
+    }
+    
+    .faq-item.active .faq-answer {
+      display: block;
+    }
+    
+    /* Call to Action */
+    .cta {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    .cta-title {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--white);
+    }
+    
+    .cta-text {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      color: rgba(255, 255, 255, 0.8);
+    }
+    
+    .cta-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+    
+    /* Footer */
+    .footer {
+      background-color: var(--primary);
+      color: rgba(255, 255, 255, 0.7);
+      padding: 5rem 0 2rem;
+    }
+    
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 4rem;
+      margin-bottom: 4rem;
+    }
+    
+    .footer-logo {
+      font-family: 'Cormorant', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+    
+    .footer-about p {
+      color: rgba(255, 255, 255, 0.7);
+    }
+    
+    .footer-heading {
+      font-size: 1.2rem;
+      color: var(--white);
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+    
+    .footer-heading::after {
+      content: '';
+      position: absolute;
+      width: 40px;
+      height: 2px;
+      background-color: var(--secondary);
+      bottom: 0;
+      left: 0;
+    }
+    
+    .footer-links {
+      list-style: none;
+    }
+    
+    .footer-link {
+      margin-bottom: 0.8rem;
+    }
+    
+    .footer-link a {
+      transition: var(--transition);
+    }
+    
+    .footer-link a:hover {
+      color: var(--secondary);
+    }
+    
+    .footer-bottom {
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      text-align: center;
+      font-size: 0.9rem;
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    
+    .social-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.1);
+      color: var(--white);
+      transition: var(--transition);
+    }
+    
+    .social-link:hover {
+      background-color: var(--secondary);
+      color: var(--dark);
+    }
+    
+    /* Special Elements */
+    .floating-element {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.1;
+    }
+    
+    .floating-1 {
+      width: 300px;
+      height: 300px;
+      background-color: var(--secondary);
+      top: -150px;
+      right: -150px;
+    }
+    
+    .floating-2 {
+      width: 200px;
+      height: 200px;
+      background-color: var(--accent);
+      bottom: -100px;
+      left: -100px;
+    }
+    
+    /* Badges */
+    .badge {
+      display: inline-block;
+      padding: 0.3rem 0.8rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      margin-left: 0.5rem;
+    }
+    
+    .badge-primary {
+      background-color: var(--primary);
+      color: var(--white);
+    }
+    
+    .badge-secondary {
+      background-color: var(--secondary);
+      color: var(--dark);
+    }
+    
+    .badge-accent {
+      background-color: var(--accent);
+      color: var(--white);
+    }
+    
+    .badge-success {
+      background-color: #4caf50;
+      color: var(--white);
+    }
+    
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    
+    .fade-in.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Responsive */
+    @media (max-width: 992px) {
+      .hero-title {
+        font-size: 3rem;
+      }
+      
+      .section-title {
+        font-size: 2.5rem;
+      }
+      
+      .pricing-grid,
+      .value-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+      
+      .pricing-card.featured {
+        transform: scale(1);
+      }
+      
+      .footer-top {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+      
+      .offer-content {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .offer-action {
+        margin-left: 0;
+        margin-top: 2rem;
+      }
+      
+      .countdown {
+        justify-content: center;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 2.5rem;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+      
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .cta-buttons {
+        flex-direction: column;
+      }
+    }
+    
+    /* Loading Bar */
+    .loading-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 3px;
+      background-color: var(--secondary);
+      z-index: 9999;
+      transition: width 0.3s ease;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="loading-bar"></div>
+  
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <nav class="nav">
+        <a href="#" class="logo">Beacher Framing</a>
+        <ul class="nav-menu">
+          <li><a href="#features" class="nav-link">Features</a></li>
+          <li><a href="#process" class="nav-link">Process</a></li>
+          <li><a href="#pricing" class="nav-link">Pricing</a></li>
+          <li><a href="#faq" class="nav-link">FAQ</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content fade-in active">
+        <span class="hero-tag"><i class="fas fa-bolt"></i>Limited Time Offer</span>
+        <h1 class="hero-title">Transform Your Framing Business with a <span class="text-secondary">Premium</span> Online Experience</h1>
+        <p class="hero-text">Elevate your custom framing services with a beautiful, conversion-focused website that attracts new customers and enhances your brand. Get launched in just 3 weeks with our exclusive, all-inclusive package.</p>
+        <div class="hero-buttons">
+          <a href="#pricing" class="btn btn-secondary">See Our Packages <i class="fas fa-long-arrow-alt-right icon"></i></a>
+          <a href="#features" class="btn btn-outline">Explore Features</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Value Proposition Section -->
+  <section class="section section-light">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-pretitle">Why Choose Us</span>
+        <h2 class="section-title">Transform Your Business</h2>
+        <p class="section-subtitle">Our custom website solution is designed specifically for framing businesses, combining beautiful design with powerful e-commerce features.</p>
+      </div>
+      
+      <div class="value-grid">
+        <div class="value-card fade-in">
+          <div class="value-icon">
+            <i class="fas fa-paint-brush"></i>
+          </div>
+          <h3 class="value-title">Showcase Your Craft</h3>
+          <p class="value-text">Beautifully display your framing work with high-quality images, elegant galleries, and immersive product showcases that highlight the quality of your craftsmanship.</p>
+          <a href="#" class="btn-link">Learn more <i class="fas fa-chevron-right"></i></a>
+        </div>
+        
+        <div class="value-card fade-in">
+          <div class="value-icon">
+            <i class="fas fa-shopping-cart"></i>
+          </div>
+          <h3 class="value-title">Sell More Frames</h3>
+          <p class="value-text">Our streamlined e-commerce system makes it easy for customers to upload images, customize frames, and complete purchases without leaving your site.</p>
+          <a href="#" class="btn-link">Learn more <i class="fas fa-chevron-right"></i></a>
+        </div>
+        
+        <div class="value-card fade-in">
+          <div class="value-icon">
+            <i class="fas fa-calendar-check"></i>
+          </div>
+          <h3 class="value-title">Book More Appointments</h3>
+          <p class="value-text">Integrated booking system allows customers to schedule consultations, frame drop-offs, and pick-ups directly through your website, saving you time and reducing no-shows.</p>
+          <a href="#" class="btn-link">Learn more <i class="fas fa-chevron-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Features Section -->
+  <section id="features" class="section section-dark">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-pretitle">Premium Features</span>
+        <h2 class="section-title">Everything You Need</h2>
+        <p class="section-subtitle">Our websites come packed with custom features designed specifically for framing businesses.</p>
+      </div>
+      
+      <div class="features-grid">
+        <div class="feature-card fade-in">
+          <div class="feature-image">
+            <img src="/api/placeholder/600/400" alt="Frame Preview Tool">
+            <div class="feature-badge">Popular</div>
+          </div>
+          <div class="feature-content">
+            <h3 class="feature-title">Frame Preview Tool</h3>
+            <p class="feature-desc">Let customers see how their images will look in different frames before they buy.</p>
+            <ul class="feature-list">
+              <li class="feature-item">
+                <i class="fas fa-check-circle"></i>
+                <span>Upload & position images</span>
+              </li>
+              <li class="feature-item">
+                <i class="fas fa-check-circle"></i>
+                <span>Try different frame styles</span>
+              </li>
+              <li class="feature-item">
+                <i class="fas fa-check-circle"></i>
+                <span>Adjust mat colors & sizes</span>
+              </li>
+              <li class="feature-item">
+                <i class="fas fa-check-circle"></i>
+                <span>Save favorites for later</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="feature-card fade-in">
+          <div class="feature-image">
+            <img src="/api/placeholder/600/400" alt="E-Commerce Platform">
+          </div>
+          <div class="feature-content">
+            <h3 class="feature-title">E-Commerce Solution</h3>
+            <p class="feature-desc">Complete online store functionality to sell frames, prints, and services.</p>
+            <ul class="feature-list">
+              <li class="feature-item">
+                <i class="fas fa-check-circle"></i>
+                <span>Secure payment processing</span>
+              </li>
+              <li class="feature-item">
+                <i class="fas fa-check-circle"></i>
+                <span>Customer accounts & history</span>
+              </li>
+              <li class="feature-item">
+                <i class="fas fa-check-circle"></i>
+                <span>Inventory management</span>
+              </li>
+              <li class="feature-item">
+                <i class="fas fa-check-circle"></i>
+                <span>Shipping & tax calculations</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="feature-card fade-in">
+          <div class="feature-image">
+            <img src="/api/placeholder/600/400" alt="Booking System">
+          </div>
+          <div class="feature-content">
+            <h3 class="feature-title">Appointment Booking</h3>
+            <p class="feature-desc">Streamline scheduling with an integrated booking system.</p>
+            <ul class="feature-list">
+              <li class="feature-item">
+                <i class="fas fa-check-circle"></i>
+                <span>Real-time availability</span>
+              </li>
+              <li class="feature-item">
+                <i class="fas fa-check-circle"></i>
+                <span>Automated reminders</span>
+              </li>
+              <li class="feature-item">
+                <i class="fas fa-check-circle"></i>
+                <span>Service selection</span>
+              </li>
+              <li class="feature-item">
+                <i class="fas fa-check-circle"></i>
+                <span>Calendar integration</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Process Section -->
+  <section id="process" class="section section-light">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-pretitle">Our Approach</span>
+        <h2 class="section-title">Simple 4-Step Process</h2>
+        <p class="section-subtitle">We've streamlined our website development process to get you up and running quickly with minimal effort on your part.</p>
+      </div>
+      
+      <div class="process-wrapper">
+        <div class="process-step fade-in">
+          <div class="process-number">1</div>
+          <div class="process-content">
+            <h3 class="process-title">Discovery & Design</h3>
+            <p class="process-text">We begin with understanding your business, your customers, and your unique selling points. Then we craft a custom design that reflects your brand identity and showcases your framing work beautifully.</p>
+          </div>
+        </div>
+        
+        <div class="process-step fade-in">
+          <div class="process-number">2</div>
+          <div class="process-content">
+            <h3 class="process-title">Development</h3>
+            <p class="process-text">Our development team brings the design to life using Next.js, creating a fast, responsive website with all the features you need. We ensure your site works perfectly on all devices and browsers.</p>
+          </div>
+        </div>
+        
+        <div class="process-step fade-in">
+          <div class="process-number">3</div>
+          <div class="process-content">
+            <h3 class="process-title">Content Integration</h3>
+            <p class="process-text">We populate your site with your product catalog, services, and brand content. We'll optimize images and write compelling copy that highlights your expertise and attracts customers.</p>
+          </div>
+        </div>
+        
+        <div class="process-step fade-in">
+          <div class="process-number">4</div>
+          <div class="process-content">
+            <h3 class="process-title">Launch & Support</h3>
+            <p class="process-text">After thorough testing, we launch your site and provide training on how to manage it. Our ongoing support ensures your website continues to perform flawlessly as your business grows.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Pricing Section -->
+  <section id="pricing" class="section section-dark">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-pretitle">Affordable Packages</span>
+        <h2 class="section-title">Choose Your Perfect Plan</h2>
+        <p class="section-subtitle">Select from our carefully crafted packages designed to fit businesses at every stage of growth.</p>
+      </div>
+      
+      <div class="pricing-grid">
+        <div class="pricing-card fade-in">
+          <div class="pricing-header">
+            <h3 class="pricing-title">Starter</h3>
+            <p class="pricing-subtitle">Perfect for new framing businesses</p>
+            <div class="pricing-price">
+              <div class="pricing-amount"><span class="pricing-currency">$</span>399</div>
+              <div class="pricing-period">one-time</div>
+            </div>
+          </div>
+          <div class="pricing-content">
+            <ul class="pricing-features">
+              <li class="pricing-feature">
+                <i class="fas fa-check-circle"></i>
+                <span>5-page responsive website</span>
+              </li>
+              <li class="pricing-feature">
+                <i class="fas fa-check-circle"></i>
+                <span>Image gallery</span>
+              </li>
+              <li class="pricing-feature">
+                <i class="fas fa-check-circle"></i>
+                <span>Contact form</span>
+              </li>
+              <li class="pricing-feature">
+                <i class="fas fa-check-circle"></i>
+                <span>Mobile-friendly design</span>
+              </li>
+              <li class="pricing-feature">
+                <i class="fas fa-check-circle"></i>
+                <span>Social media integration</span>
+              </li>
+              <li class="pricing-feature disabled">
+                <i class="fas fa-times-circle"></i>
+                <span>E-commerce functionality</span>
+              </li>
+              <li class="pricing-feature disabled">
+                <i class="fas fa-times-circle"></i>
+                <span>Frame preview tool</span>
+              </li>
+              <li class="pricing-feature disabled">
+                <i class="fas fa-times-circle"></i>
+                <span>Appointment booking</span>
+              </li>
+            </ul>
+            <div class="pricing-action">
+              <a href="#contact" class="btn btn-primary">Get Started</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="pricing-card featured fade-in">
+          <div class="pricing-card-badge">Most Popular</div>
+          <div class="pricing-header">
+            <h3 class="pricing-title">Professional</h3>
+            <p class="pricing-subtitle">Ideal for established businesses</p>
+            <div class="pricing-price">
+              <div class="pricing-amount"><span class="pricing-currency">$</span>699</div>
+              <div class="pricing-period">one-time</div>
+            </div>
+          </div>
+          <div class="pricing-content">
+            <ul class="pricing-features">
+              <li class="pricing-feature">
+                <i class="fas fa-check-circle"></i>
+                <span>10-page responsive website</span>
+              </li>
+              <li class="pricing-feature">
+                <i class="fas fa-check-circle"></i>
+                <span>Advanced image galleries</span>
+              </li>
+              <li class="pricing-feature">
+                <i class="fas fa-check-circle"></i>
+                <span>Basic e-commerce (up to 30 products)</span>
+              </li>
+              <li class="pricing-feature">
+                <i class="fas fa-check-circle"></i>
+                <span>Appointment booking system</span>
+              </li>
+              <li class="pricing-feature">
+                <i class="fas fa-check-circle"></i>
+                <span>SEO optimization</span>
+              </li>
+              <li class="pricing-feature">
+                <i class="fas fa-check-circle"></i>
+                <span>Google Maps integration</span>
+              </li>
+              <li class="pricing-feature">
+                <i class="fas fa-check-circle"></i>
+                <span>Social media integration</span>
+              </li>
+              <li class="pricing-feature disabled">
+                <i class="fas fa-times-circle"></i>
+                <span>Frame preview tool</span>
+              </li>
+            </ul>
+            <div class="pricing-action">
+              <a href="#contact" class="btn btn-secondary">Get Started</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="pricing-card fade-in">
+          <div class="pricing-header">
+            <h3 class="pricing-title">Premium</h3>
+            <p class="pricing-subtitle">For businesses ready to dominate</p>
+            <div class="pricing-price">
+              <div class="pricing-amount"><span class="pricing-currency">$</span>999</div>
+              <div class="pricing-period">one-time</div>
+            </div>
+          </div>
+          <div class="pricing-content">
+            <ul class="pricing-features">
+              <li class="pricing-feature">
+                <i class="fas fa-check-circle"></i>
+                <span>Unlimited pages</span>
+              </li>
+              <li class="pricing-feature">
+                <i class="fas fa-check-circle"></i>
+                <span>Full e-commerce platform</span>
+              </li>
+              <li class="pricing-feature">
+                <i class="fas fa-check-circle"></i>
+                <span>Interactive frame preview tool</span>
+              </li>
+              <li class="pricing-feature">
+                <i class="fas fa-check-circle"></i>
+                <span>Advanced appointment booking</span>
+              </li>
+              <li class="pricing-feature">
+                <i class="fas fa-check-circle"></i>
+                <span>Customer accounts</span>
+              </li>
+              <li class="pricing-feature">
+                <i class="fas fa-check-circle"></i>
+                <span>Advanced SEO package</span>
+              </li>
+              <li class="pricing-feature">
+                <i class="fas fa-check-circle"></i>
+                <span>Email marketing integration</span>
+              </li>
+              <li class="pricing-feature">
+                <i class="fas fa-check-circle"></i>
+                <span>Analytics dashboard</span>
+              </li>
+            </ul>
+            <div class="pricing-action">
+              <a href="#contact" class="btn btn-primary">Get Started</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <p class="pricing-disclaimer">* All packages include 3 rounds of revisions, website setup, and 30 days of post-launch support.</p>
+    </div>
+  </section>
+  
+  <!-- Add-ons Section -->
+  <section class="section section-light">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-pretitle">Customize Your Package</span>
+        <h2 class="section-title">Optional Add-ons</h2>
+        <p class="section-subtitle">Enhance your website with these powerful additional services.</p>
+      </div>
+      
+      <div class="add-ons-grid">
+        <div class="add-on-card fade-in">
+          <div class="add-on-icon">
+            <i class="fas fa-globe"></i>
+          </div>
+          <h3 class="add-on-title">
+            <span>Domain Registration</span>
+            <span class="add-on-price">$15/yr</span>
+          </h3>
+          <p class="add-on-desc">Professional domain name registration and management.</p>
+        </div>
+        
+        <div class="add-on-card fade-in">
+          <div class="add-on-icon">
+            <i class="fas fa-server"></i>
+          </div>
+          <h3 class="add-on-title">
+            <span>Premium Hosting</span>
+            <span class="add-on-price">$25/mo</span>
+          </h3>
+          <p class="add-on-desc">Fast, secure hosting with daily backups and SSL.</p>
+        </div>
+        
+        <div class="add-on-card fade-in">
+          <div class="add-on-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <h3 class="add-on-title">
+            <span>Business Email</span>
+            <span class="add-on-price">$5/mo</span>
+          </h3>
+          <p class="add-on-desc">Professional email with your domain name.</p>
+        </div>
+        
+        <div class="add-on-card fade-in">
+          <div class="add-on-icon">
+            <i class="fas fa-cog"></i>
+          </div>
+          <h3 class="add-on-title">
+            <span>Maintenance Plan</span>
+            <span class="add-on-price">$49/mo</span>
+          </h3>
+          <p class="add-on-desc">Regular updates, security monitoring, and support.</p>
+        </div>
+        
+        <div class="add-on-card fade-in">
+          <div class="add-on-icon">
+            <i class="fas fa-pencil-alt"></i>
+          </div>
+          <h3 class="add-on-title">
+            <span>Logo Design</span>
+            <span class="add-on-price">$149</span>
+          </h3>
+          <p class="add-on-desc">Professional logo design with unlimited revisions.</p>
+        </div>
+        
+        <div class="add-on-card fade-in">
+          <div class="add-on-icon">
+            <i class="fas fa-search"></i>
+          </div>
+          <h3 class="add-on-title">
+            <span>SEO Package</span>
+            <span class="add-on-price">$99</span>
+          </h3>
+          <p class="add-on-desc">Keyword research and on-page optimization.</p>
+        </div>
+        
+        <div class="add-on-card fade-in">
+          <div class="add-on-icon">
+            <i class="fas fa-robot"></i>
+          </div>
+          <h3 class="add-on-title">
+            <span>AI Product Recommendations</span>
+            <span class="add-on-price">$199</span>
+          </h3>
+          <p class="add-on-desc">AI-powered frame suggestions based on uploaded images.</p>
+        </div>
+        
+        <div class="add-on-card fade-in">
+          <div class="add-on-icon">
+            <i class="fas fa-file-alt"></i>
+          </div>
+          <h3 class="add-on-title">
+            <span>Content Creation</span>
+            <span class="add-on-price">$199</span>
+          </h3>
+          <p class="add-on-desc">Professional copywriting for your entire website.</p>
+        </div>
+      </div>
+      
+      <!-- Limited Time Offer -->
+      <div class="limited-offer fade-in">
+        <div class="offer-content">
+          <div class="offer-text">
+            <span class="offer-badge">Limited Time Offer</span>
+            <h3 class="offer-title">Launch Special: 25% Off + Free Logo Design</h3>
+            <p class="offer-desc">Sign up this week and receive 25% off any package plus a complimentary professional logo design (a $149 value). Offer expires soon!</p>
+          </div>
+          <div class="offer-action">
+            <div class="countdown">
+              <div class="countdown-item">
+                <span class="countdown-number">2</span>
+                <span class="countdown-label">days</span>
+              </div>
+              <div class="countdown-item">
+                <span class="countdown-number">18</span>
+                <span class="countdown-label">hours</span>
+              </div>
+              <div class="countdown-item">
+                <span class="countdown-number">45</span>
+                <span class="countdown-label">mins</span>
+              </div>
+            </div>
+            <a href="#contact" class="btn btn-secondary">Claim Offer Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Testimonials Section -->
+  <section class="section section-dark">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-pretitle">Success Stories</span>
+        <h2 class="section-title">What Our Clients Say</h2>
+        <p class="section-subtitle">Don't just take our word for it. Here's what other framing businesses have to say about working with us.</p>
+      </div>
+      
+      <div class="testimonials-wrapper">
+        <div class="testimonial fade-in">
+          <p class="testimonial-text">"Since launching our new website, our online orders have increased by over 200%. The frame preview tool has been a game-changer for our customers. Worth every penny!"</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">
+              <img src="/api/placeholder/60/60" alt="Sarah Johnson">
+            </div>
+            <div class="testimonial-info">
+              <h4>Sarah Johnson</h4>
+              <p>Frame Perfect Gallery, Kingston</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial fade-in">
+          <p class="testimonial-text">"I was hesitant about the investment, but it has paid for itself many times over. The website is beautiful, easy to manage, and my customers love the online booking system."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">
+              <img src="/api/placeholder/60/60" alt="Marcus Chen">
+            </div>
+            <div class="testimonial-info">
+              <h4>Marcus Chen</h4>
+              <p>ArtFrame Studio, Ocho Rios</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- FAQ Section -->
+  <section id="faq" class="section section-light">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-pretitle">Common Questions</span>
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <p class="section-subtitle">Find answers to common questions about our website development services.</p>
+      </div>
+      
+      <div class="faq-wrapper">
+        <div class="faq-item active fade-in">
+          <h3 class="faq-question">How long will it take to build my website?</h3>
+          <div class="faq-answer">
+            <p>Most projects are completed within 3-4 weeks from start to finish. The Professional and Premium packages may take slightly longer due to the additional features. We'll provide you with a detailed timeline during our initial consultation.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item fade-in">
+          <h3 class="faq-question">Do I need technical knowledge to manage the website?</h3>
+          <div class="faq-answer">
+            <p>Not at all! We design our websites with user-friendly content management systems that make it easy to update content, add products, and manage bookings. We also provide comprehensive training and documentation to help you get comfortable with your new website.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item fade-in">
+          <h3 class="faq-question">Will my website work on mobile devices?</h3>
+          <div class="faq-answer">
+            <p>Absolutely! All our websites are fully responsive, meaning they automatically adjust to look great and function perfectly on any device - smartphones, tablets, laptops, and desktop computers.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item fade-in">
+          <h3 class="faq-question">What payment methods do you accept?</h3>
+          <div class="faq-answer">
+            <p>We accept credit cards, bank transfers, and PayPal. We offer flexible payment plans with 50% due upfront and the remaining 50% upon project completion.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item fade-in">
+          <h3 class="faq-question">What if I need changes after the website launches?</h3>
+          <div class="faq-answer">
+            <p>All packages include 30 days of free support after launch. For ongoing support and maintenance, we recommend our monthly maintenance plan, which includes regular updates, security monitoring, and content changes as needed.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Call to Action Section -->
+  <section id="contact" class="section section-accent">
+    <div class="container">
+      <div class="cta">
+        <h2 class="cta-title">Ready to Transform Your Framing Business?</h2>
+        <p class="cta-text">Take the first step toward a beautiful, effective website that will help your business grow. Contact us today to schedule a free consultation.</p>
+        <div class="cta-buttons">
+          <a href="tel:+18767838158" class="btn btn-secondary"><i class="fas fa-phone"></i> Call (876) 783-8158</a>
+          <a href="mailto:beacherframes@gmail.com" class="btn btn-outline"><i class="fas fa-envelope"></i> Email Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-about">
+          <div class="footer-logo">Beacher Framing</div>
+          <p>This proposal has been created exclusively for Beacher Picture Framing Services. Our team is ready to bring your vision to life with a stunning, effective website.</p>
+          <div class="social-links">
+            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-pinterest-p"></i></a>
+          </div>
+        </div>
+        
+        <div class="footer-links-container">
+          <h4 class="footer-heading">Quick Links</h4>
+          <ul class="footer-links">
+            <li class="footer-link"><a href="#features">Features</a></li>
+            <li class="footer-link"><a href="#process">Process</a></li>
+            <li class="footer-link"><a href="#pricing">Pricing</a></li>
+            <li class="footer-link"><a href="#faq">FAQ</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-links-container">
+          <h4 class="footer-heading">Contact</h4>
+          <ul class="footer-links">
+            <li class="footer-link"><a href="tel:+18767838158">(876) 783-8158</a></li>
+            <li class="footer-link"><a href="mailto:beacherframes@gmail.com">beacherframes@gmail.com</a></li>
+            <li class="footer-link">3 Julie Crescent, Bogue Heights</li>
+            <li class="footer-link">Montego Bay, Jamaica</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2025 Web Agency. All rights reserved. | Proposal for Beacher Picture Framing Services</p>
+      </div>
+    </div>
+  </footer>
+  
+  <script>
+    // Page loading animation
+    document.addEventListener('DOMContentLoaded', function() {
+      const loadingBar = document.querySelector('.loading-bar');
+      loadingBar.style.width = '100%';
+      
+      setTimeout(() => {
+        loadingBar.style.opacity = '0';
+      }, 1000);
+      
+      // Fade-in animations
+      const fadeElements = document.querySelectorAll('.fade-in');
+      
+      const fadeInOnScroll = function() {
+        fadeElements.forEach(element => {
+          const elementTop = element.getBoundingClientRect().top;
+          const elementVisible = 150;
+          
+          if (elementTop < window.innerHeight - elementVisible) {
+            element.classList.add('active');
+          }
+        });
+      };
+      
+      // Initial check
+      fadeInOnScroll();
+      
+      // On scroll
+      window.addEventListener('scroll', fadeInOnScroll);
+      
+      // Header scroll effect
+      const header = document.querySelector('.header');
+      
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > 50) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+      });
+      
+      // FAQ toggle
+      const faqQuestions = document.querySelectorAll('.faq-question');
+      
+      faqQuestions.forEach(question => {
+        question.addEventListener('click', () => {
+          const faqItem = question.parentElement;
+          faqItem.classList.toggle('active');
+        });
+      });
+      
+      // Smooth scrolling
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          const targetId = this.getAttribute('href');
+          
+          if (targetId === '#') return;
+          
+          const targetElement = document.querySelector(targetId);
+          
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
